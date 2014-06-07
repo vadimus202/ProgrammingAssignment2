@@ -1,0 +1,36 @@
+## Programming Assignment #2 Example
+
+### Caching the Inverse of a Matrix
+Matrix inversion is usually a costly computation and their may be some benefit to caching the inverse of a matrix rather than compute it repeatedly. This document demonstrates the use of special functions that cache the inverse of a matrix.
+
+### Using base R Solve() function
+First, we define a simple matrix
+```{r}
+my.matrix = matrix(c(1,2,2,1),nrow=2,ncol=2)
+my.matrix
+```
+The inverse of a matrix is computed as follows:
+```{r}
+solve(my.matrix)
+```
+
+### Using "cacheable" inverse functions
+
+#### makeCacheMatrix() function
+This function creates a special "matrix" object that can cache its inverse.
+``` {r}
+source('cachematrix.R')
+matrix.cached = makeCacheMatrix(my.matrix)
+```
+#### cacheSolve() function
+This function creates a special "matrix" object that can cache its inverse.
+``` {r}
+cacheSolve(matrix.cached)
+```
+
+The second time the inverse is invoked, the cached version is used
+``` {r}
+cacheSolve(matrix.cached)
+```
+
+
